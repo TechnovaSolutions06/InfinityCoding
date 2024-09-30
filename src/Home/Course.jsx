@@ -45,36 +45,67 @@ const Course = () => {
   const containerRef = useRef(null);
   const panelsRef = useRef([]);
 
-  useEffect(() => {
-    const mdScreen = window.matchMedia("(max-width: 768px)");
-    const sections = panelsRef.current;
+  // useEffect(() => {
+  //   const mdScreen = window.matchMedia("(max-width: 768px)");
+  //   const sections = panelsRef.current;
     
-    const scrollConfig = {
-      trigger: containerRef.current,
-      pin: true,
-      scrub: 0.5,
-      snap: {
-        snapTo: 1 / (sections.length - 1),
-        duration: 0.8,
-        ease: "power4.inOut",
-      },
-      start: "top top",
-      end: () => "+=" + containerRef.current.offsetWidth * sections.length - 30,
-      invalidateOnRefresh: true,
-    };
+  //   const scrollConfig = {
+  //     trigger: containerRef.current,
+  //     pin: true,
+  //     scrub: 0.5,
+  //     snap: {
+  //       snapTo: 1 / (sections.length - 1),
+  //       duration: 0.8,
+  //       ease: "power4.inOut",
+  //     },
+  //     start: "top top",
+  //     end: () => "+=" + containerRef.current.offsetWidth * sections.length - 30,
+  //     invalidateOnRefresh: true,
+  //   };
   
-    const horizontalScroll = gsap.to(sections, {
-      xPercent: mdScreen.matches ? -28 * 4 : -28 * (sections.length - 1),
+  //   const horizontalScroll = gsap.to(sections, {
+  //     xPercent: mdScreen.matches ? -28 * 4 : -28 * (sections.length - 1),
+  //     ease: "power4.inOut",
+  //     scrollTrigger: scrollConfig,
+  //   });
+  
+  //   return () => {
+  //     horizontalScroll.kill();
+  //     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  //   };
+  // }, [data]);
+  useEffect(() => {
+  const mdScreen = window.matchMedia("(max-width: 768px)");
+  const sections = panelsRef.current;
+
+  const scrollConfig = {
+    trigger: containerRef.current,
+    pin: true,
+    scrub: 0.5,
+    snap: {
+      snapTo: 1 / (sections.length - 1),
+      duration: 0.8,
       ease: "power4.inOut",
-      scrollTrigger: scrollConfig,
-    });
-  
-    return () => {
-      horizontalScroll.kill();
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [data]);
-  
+    },
+    start: "top top",
+    end: () => "+=" + containerRef.current.offsetWidth * sections.length - 30,
+    invalidateOnRefresh: true,
+  };
+
+  const horizontalScroll = gsap.to(sections, {
+    xPercent: mdScreen.matches ? -28 * 4 : -28 * (sections.length - 1),
+    ease: "power4.inOut",
+    scrollTrigger: scrollConfig,
+  });
+
+  ScrollTrigger.refresh();
+
+  return () => {
+    horizontalScroll.kill();
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  };
+}, [data]);
+
   
 
   return (
