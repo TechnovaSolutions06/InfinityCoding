@@ -2,7 +2,7 @@ import React from "react";
 
 const Vision = () => {
   return (
-    <div className="bg-[#1B238D] w-full h-[200px] md:h-[400px] lg:h-[500px] xl:h-[600px] rounded-3xl p-4 relative my-10 ">
+    <div className="bg-[#1B238D] w-full h-[200px] md:h-[400px] lg:h-[500px] xl:h-[600px] rounded-3xl p-4 relative my-5 lg:my-10 ">
       <img
         src="visionimg.svg"
         alt=""
