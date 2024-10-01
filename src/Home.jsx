@@ -24,7 +24,7 @@ const Home = () => {
           
           <Services />
         
-        <div className="">
+        <div className="w-full h-full">
           <Vision />
         </div>
         <div className="">
